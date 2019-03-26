@@ -3,6 +3,8 @@ let holes = [];
 
 function loadDoc() {
    let xhttp = new XMLHttpRequest();
+   $('.modal').modal({backdrop: 'static', keyboard: false});
+   $('.modal').modal('show');
    xhttp.onreadystatechange = function () {
        if (this.readyState == 4 && this.status == 200) {
         let courseList = JSON.parse(this.responseText);
