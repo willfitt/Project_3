@@ -8,9 +8,14 @@ function loadDoc() {
         let courseList = JSON.parse(this.responseText);
            console.log(courseList);
            for(let i = 0; i < courseList.courses.length; i++) {
-               $(".course-select").append(`<option value="${courseList.courses[i].id}">${courseList.courses[i].name}</option>`);
-           } //turn for loop into function?
-        //    $(".course-select") to do some sort of select to load info for default selection
+               $(".card-container").append(
+                   `<div class="card course-select" style="width: 18rem;">  
+                    <img src="${courseList.courses[i].image}" class="card-img-top" alt="Golf Course Picture">
+                    <div class="card-body">
+                    <h5 class="card-title">${courseList.courses[i].name}</h5>
+                    <a href="#" class="btn btn-primary" onclick="getCourseById(${courseList.courses[i].id})">Select</a>
+                    </div></div>`);
+           } 
        }
    };
    xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses", true);
@@ -38,8 +43,4 @@ function getCourseById(id) {
 CODE ABOVE gets the courses, next, get ID of selected course
 use a select button, use onchange() so it knows to grab the selected ID when it happens   onchange(this.value)
 select a course, select a tee, populate scorecard
-
-http://uxcobra.com/golfapi/courses/19002
- example of the link for a course id, insert that into the same thing as line 16 but make the 19002 
-section a dynamic variable depending on course picked
 */
