@@ -1,5 +1,6 @@
 loadDoc();
 let holes = [];
+courseData = [];
 
 function loadDoc() {
    let xhttp = new XMLHttpRequest();
@@ -15,7 +16,7 @@ function loadDoc() {
                     <img src="${courseList.courses[i].image}" class="card-img-top" alt="Golf Course Picture">
                     <div class="card-body">
                     <h5 class="card-title">${courseList.courses[i].name}</h5>
-                    <a href="#" class="btn btn-primary" onclick="getCourseById(${courseList.courses[i].id})">Select</a>
+                    <a class="btn btn-primary" onclick="getCourseById(${courseList.courses[i].id})">Select</a>
                     </div></div>`);
            } 
        }
@@ -31,12 +32,47 @@ function getCourseById(id) {
             let course = JSON.parse(this.responseText);
             console.log(course);
             holes = course.data.holes;
+            courseData = course.data;
             console.log(holes); 
+            console.log("courseData", courseData);
             //Build html function  
         }
     };
     xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses/" + id, true);
     xhttp.send();
+    $(".card-container").empty();
+    loadTeeById()
+}
+
+
+function loadTeeById() {
+    teeBoxArray = ["Pro", "Champion", "Men", "Women"]
+    for(let i = 0; i < teeBoxArray.length; i++) {
+        $(".modal-title").html("Tee Select")
+        $(".card-container").append(
+            `<div class="card w-50 course-select">  
+             <div class="card-body">
+             <h5 class="card-title">${teeBoxArray[i]}</h5>
+             <a class="btn btn-primary" onclick="choosePlayerCount()">Select</a>
+             </div></div>`);
+    } 
+    //return teeIndex
+
+}
+
+function choosePlayerCount() {
+    $(".card-container").empty();
+    playerCount = [1, 2, 3, 4];
+    for(let i = 0; i < playerCount.length; i++) {
+        $(".modal-title").html("Player Select")
+        $(".card-container").append(
+            `<div class="card w-50 course-select">  
+             <div class="card-body">
+             <h5 class="card-title">${playerCount[i]}</h5>
+             <a class="btn btn-primary">Select</a>
+             </div></div>`);
+    } 
+    //return player count
 }
 
 // calc score use holes array 
