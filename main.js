@@ -1,6 +1,7 @@
 loadDoc();
 let holes = [];
-courseData = [];
+let courseData = [];
+let teeIndex;
 
 function loadDoc() {
    let xhttp = new XMLHttpRequest();
@@ -11,7 +12,7 @@ function loadDoc() {
         let courseList = JSON.parse(this.responseText);
            console.log(courseList);
            for(let i = 0; i < courseList.courses.length; i++) {
-               $(".card-container").append(
+               $("#modal-container").append(
                    `<div class="card course-select" style="width: 18rem;">  
                     <img src="${courseList.courses[i].image}" class="card-img-top" alt="Golf Course Picture">
                     <div class="card-body">
@@ -30,49 +31,46 @@ function getCourseById(id) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let course = JSON.parse(this.responseText);
-            console.log(course);
+            console.log("Course:", course);
             holes = course.data.holes;
             courseData = course.data;
-            console.log(holes); 
-            console.log("courseData", courseData);
-            //Build html function  
+            console.log("Holes:", holes); 
+            loadTeeById();
         }
     };
     xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses/" + id, true);
     xhttp.send();
     $(".card-container").empty();
-    loadTeeById()
 }
-
 
 function loadTeeById() {
-    teeBoxArray = ["Pro", "Champion", "Men", "Women"]
-    for(let i = 0; i < teeBoxArray.length; i++) {
-        $(".modal-title").html("Tee Select")
-        $(".card-container").append(
+    tees = courseData.holes[0].teeBoxes;
+    for(let i = 0; i < tees.length -1; i++) {
+        $("#modal-title").html(`${courseData.name}, Tee Select`)
+        $("#modal-container").append(
             `<div class="card w-50 course-select">  
              <div class="card-body">
-             <h5 class="card-title">${teeBoxArray[i]}</h5>
-             <a class="btn btn-primary" onclick="choosePlayerCount()">Select</a>
+             <h5 class="card-title">${tees[i].teeType}</h5>
+             <a class="btn btn-primary" id="${tees.indexOf(tees[i])}" onclick="choosePlayerCount(${tees.indexOf(tees[i])})">Select</a>
              </div></div>`);
     } 
-    //return teeIndex
 
 }
 
-function choosePlayerCount() {
-    $(".card-container").empty();
+function choosePlayerCount(id) {
+    teeIndex = id;
+    console.log("Tee Index:", teeIndex);
+    $("#modal-container").empty();
     playerCount = [1, 2, 3, 4];
     for(let i = 0; i < playerCount.length; i++) {
-        $(".modal-title").html("Player Select")
-        $(".card-container").append(
+        $("#modal-title").html(`${courseData.name}, ${tees[id].teeType}'s Tee, Player Amount Select`)
+        $("#modal-container").append(
             `<div class="card w-50 course-select">  
              <div class="card-body">
              <h5 class="card-title">${playerCount[i]}</h5>
-             <a class="btn btn-primary">Select</a>
+             <a class="btn btn-primary" onclick="buildTable(${playerCount[i]})" >Select</a>
              </div></div>`);
     } 
-    //return player count
 }
 
 // calc score use holes array 
