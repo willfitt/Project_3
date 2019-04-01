@@ -44,3 +44,39 @@ h5{
 .course-select{
    padding: 20px;
 }
+
+.scorecard-container{
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: auto;
+    height: auto;
+
+}
+.par{
+    display: flex;
+}
+.yardage{
+    display: flex;
+
+}
+.handicap{
+    display: flex;
+}
+
+.holes{
+    display: flex;
+}
+
+.title{
+    font-weight: bold;
+    background-color: cornflowerblue;
+    width: 75px;
+}
+
+.column{
+    width: 50px;
+    text-align: center;
+}

@@ -1,7 +1,7 @@
-loadDoc();
 let holes = [];
 let courseData = [];
 let teeIndex;
+loadDoc();
 
 function loadDoc() {
    let xhttp = new XMLHttpRequest();
@@ -17,7 +17,7 @@ function loadDoc() {
                     <img src="${courseList.courses[i].image}" class="card-img-top" alt="Golf Course Picture">
                     <div class="card-body">
                     <h5 class="card-title">${courseList.courses[i].name}</h5>
-                    <a class="btn btn-primary" onclick="getCourseById(${courseList.courses[i].id})">Select</a>
+                    <a class="btn btn-primary" data-dismiss="modal" onclick="getCourseById(${courseList.courses[i].id})">Select</a>
                     </div></div>`);
            } 
        }
@@ -31,10 +31,11 @@ function getCourseById(id) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let course = JSON.parse(this.responseText);
-            console.log("Course:", course);
             holes = course.data.holes;
             courseData = course.data;
-            console.log("Holes:", holes); 
+            console.log("Holes:", holes);
+            console.log("Course Data:", courseData);
+
             loadTeeById();
         }
     };
@@ -68,15 +69,17 @@ function choosePlayerCount(id) {
             `<div class="card w-50 course-select">  
              <div class="card-body">
              <h5 class="card-title">${playerCount[i]}</h5>
-             <a class="btn btn-primary" onclick="buildTable(${playerCount[i]})" >Select</a>
+             <buton class="btn btn-primary" data-dismiss="modal" onclick="buildTable(${playerCount[i]})">Select</buton>
              </div></div>`);
     } 
 }
 
-// calc score use holes array 
+function buildTable() {
+    buildHoles();
+    buildPar();
+    buildYardage();
+    buildHandicap();
+}
 
-/*
-CODE ABOVE gets the courses, next, get ID of selected course
-use a select button, use onchange() so it knows to grab the selected ID when it happens   onchange(this.value)
-select a course, select a tee, populate scorecard
-*/
+
+
