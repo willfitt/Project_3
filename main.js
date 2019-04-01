@@ -1,6 +1,7 @@
 let holes = [];
 let courseData = [];
 let teeIndex;
+let playerCount;
 loadDoc();
 
 function loadDoc() {
@@ -46,7 +47,7 @@ function getCourseById(id) {
 
 function loadTeeById() {
     tees = courseData.holes[0].teeBoxes;
-    for(let i = 0; i < tees.length -1; i++) {
+    for(let i = 0; i < tees.length && i < 4; i++) {
         $("#modal-title").html(`${courseData.name}, Tee Select`)
         $("#modal-container").append(
             `<div class="card w-50 course-select">  
@@ -74,11 +75,14 @@ function choosePlayerCount(id) {
     } 
 }
 
-function buildTable() {
+function buildTable(players) {
+    playerCount = players;
+    // buildTitle();
     buildHoles();
     buildPar();
     buildYardage();
     buildHandicap();
+    buildPlayer();
 }
 
 

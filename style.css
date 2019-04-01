@@ -55,18 +55,18 @@ h5{
     height: auto;
 
 }
-.par{
+#par{
     display: flex;
 }
-.yardage{
+#yardage{
     display: flex;
 
 }
-.handicap{
+#handicap{
     display: flex;
 }
 
-.holes{
+#holes{
     display: flex;
 }
 
