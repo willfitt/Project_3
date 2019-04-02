@@ -97,6 +97,7 @@ function buildHandicap() {
 
 function buildPlayer() {
     for(let i = 0; i < playerCount; i++){
+        //fix player input, change to span or div?
         $("#players").append(`<div  id="player${i}" class="player-container>"<div class="title"><input onkeyup="addPlayer(this.value, event)" type="text"></div></div>`);
         buildScore(i);
     }
@@ -107,11 +108,11 @@ function buildScore(index) {
     for(let i = 0; i < courseData.holes.length; i++) {
         $(playerIdDiv).append(`<input onkeyup="calculateTotal(this)" class="column" type>`);
         if(i === 8){
-            //fix later
+            //fix later OUT
             $(playerIdDiv).append(`<input class="column"></input>`)    
         }
         if(i === 17){
-            //fix later
+            //fix later IN
             $(playerIdDiv).append(`<input class="column"></input>`)    
         }
     }
