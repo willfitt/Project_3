@@ -73,10 +73,18 @@ h5{
 .title{
     font-weight: bold;
     background-color: cornflowerblue;
-    width: 75px;
+    width: 100px;
+}
+
+input{
+    width: 100px;
 }
 
 .column{
     width: 50px;
     text-align: center;
+}
+
+.player-container{
+    display: flex;
 }

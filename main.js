@@ -77,12 +77,12 @@ function choosePlayerCount(id) {
 
 function buildTable(players) {
     playerCount = players;
-    // buildTitle();
+    // buildTitle();  IMPLEMENT THIS
     buildHoles();
     buildPar();
     buildYardage();
     buildHandicap();
-    buildPlayer();
+    buildPlayer(); 
 }
 
 
