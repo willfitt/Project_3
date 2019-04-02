@@ -25,14 +25,17 @@ h5{
     text-align: center
 }
 
-.modal-title {
-    text-align: center;
-    background-color: white;
+.page-container{
 
 }
 
+.modal-title {
+    text-align: center;
+    background-color: white;
+}
+
 .modal-body{
-    background-color: #caf9d6
+    background-color: #dadfea
 }
 .card-container{
     display: flex;
@@ -49,8 +52,8 @@ h5{
     background-color: white;
     border: 1px solid black;
     position: absolute;
-    top: 30%;
-    left: 20%;
+    top: 40%;
+
     width: auto;
     height: auto;
 
@@ -72,19 +75,38 @@ h5{
 
 .title{
     font-weight: bold;
-    background-color: cornflowerblue;
-    width: 100px;
+    /*background-color: cornflowerblue;*/
+    width: 80px;
+    padding-left: 3px;
 }
 
 input{
-    width: 100px;
+    /*width: 100px;*/
 }
 
-.column{
-    width: 50px;
+.col-sm{
     text-align: center;
+    padding: unset;
 }
 
 .player-container{
     display: flex;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.bgColor{
+    background-color: #d1c2c2;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn {
+    max-width: 100px;
 }

@@ -5,15 +5,15 @@
 function buildHoles() {
     $("#holes").append(`<div class="title">Hole</div>`);
     for(let i = 0; i < courseData.holes.length; i++) {
-        $("#holes").append(`<div class="column" id="col_${courseData.holes[i].hole}">${i + 1}</div>`)
+        $("#holes").append(`<div class="col-sm bg-info border border-dark" id="col_${courseData.holes[i].hole}">${i + 1}</div>`)
         if(i === 8){
-            $("#holes").append(`<div class="column">OUT</div>`)    
+            $("#holes").append(`<div class="col-sm bg-secondary text-white">Out</div>`)
         }
         if(i === 17){
-            $("#holes").append(`<div class="column">IN</div>`)    
+            $("#holes").append(`<div class="col-sm border-right border-white bg-secondary text-white">In</div>`)
         }
     }
-    $("#holes").append(`<div class="column">Total</div>`)
+    $("#holes").append(`<div class="col-sm bg-dark text-white">Total</div>`)
 }
 
 function buildPar() {
@@ -24,7 +24,7 @@ function buildPar() {
     for(let i = 0; i < courseData.holes.length; i++) {
         let parValue = courseData.holes[i].teeBoxes[teeIndex].par;
         parTotal += parValue;
-        $("#par").append(`<div class="column" id="par_${i}">${parValue}</div>`);
+        $("#par").append(`<div class="col-sm bgColor border border-dark" id="par_${i}">${parValue}</div>`);
 
         if(i < 9) {
             parOutTotal += parValue;
@@ -33,13 +33,13 @@ function buildPar() {
             parInTotal += parValue;
         }
         if(i === 8){        
-            $("#par").append(`<div class="column">${parOutTotal}</div>`)    
+            $("#par").append(`<div class="col-sm border-top border-white bg-secondary text-white">${parOutTotal}</div>`)
         }
         if(i === 17){
-            $("#par").append(`<div class="column">${parInTotal}</div>`)    
+            $("#par").append(`<div class="col-sm border-top border-right border-white bg-secondary text-white">${parInTotal}</div>`)
         }
     }
-    $("#par").append(`<div class="column">${parTotal}</div>`)
+    $("#par").append(`<div class="col-sm border-top border-white bg-dark text-white">${parTotal}</div>`)
 }
 
 function buildYardage() {
@@ -50,7 +50,7 @@ function buildYardage() {
     for(let i = 0; i < courseData.holes.length; i++) {
         let yardageValue = courseData.holes[i].teeBoxes[teeIndex].yards;
         yardageTotal += yardageValue;
-        $("#yardage").append(`<div class="column" id="yardage_${i}">${yardageValue}</div>`);
+        $("#yardage").append(`<div class="col-sm bgColor border border-dark" id="yardage_${i}">${yardageValue}</div>`);
 
         if(i < 9) {
             yardageOutTotal += yardageValue;
@@ -59,13 +59,13 @@ function buildYardage() {
             yardageInTotal += yardageValue;
         }
         if(i === 8){
-            $("#yardage").append(`<div class="column">${yardageOutTotal}</div>`)    
+            $("#yardage").append(`<div class="col-sm border-top border-white bg-secondary text-white">${yardageOutTotal}</div>`)
         }
         if(i === 17){
-            $("#yardage").append(`<div class="column">${yardageInTotal}</div>`)    
+            $("#yardage").append(`<div class="col-sm border-top border-right border-white bg-secondary text-white">${yardageInTotal}</div>`)
         }
     }
-    $("#yardage").append(`<div class="column">${yardageTotal}</div>`)
+    $("#yardage").append(`<div class="col-sm bg-dark  border-top border-white text-white">${yardageTotal}</div>`)
 }
 
 function buildHandicap() {
@@ -76,7 +76,7 @@ function buildHandicap() {
     for(let i = 0; i < courseData.holes.length; i++) {
         let handicapValue = courseData.holes[i].teeBoxes[teeIndex].hcp;
         handicapTotal += handicapValue;
-        $("#handicap").append(`<div class="column" id="handicap_${i}">${handicapValue}</div>`);
+        $("#handicap").append(`<div class="col-sm bgColor border border-dark" id="handicap_${i}">${handicapValue}</div>`);
 
         if(i < 9) {
             handicapOutTotal += handicapValue;
@@ -85,20 +85,20 @@ function buildHandicap() {
             handicapInTotal += handicapValue;
         }
         if(i === 8){
-            $("#handicap").append(`<div class="column">${handicapOutTotal}</div>`)    
+            $("#handicap").append(`<div class="col-sm border-top border-white bg-secondary text-white">${handicapOutTotal}</div>`)
         }
         if(i === 17){
-            $("#handicap").append(`<div class="column">${handicapInTotal}</div>`)    
+            $("#handicap").append(`<div class="col-sm border-top border-right border-white bg-secondary text-white">${handicapInTotal}</div>`)
         }
     }
-    $("#handicap").append(`<div class="column">${handicapTotal}</div>`)
+    $("#handicap").append(`<div class="col-sm bg-dark border-top border-white text-white">${handicapTotal}</div>`)
 }
 
 
 function buildPlayer() {
     for(let i = 0; i < playerCount; i++){
         //fix player input, change to span or div?
-        $("#players").append(`<div  id="player${i}" class="player-container>"<div class="title"><input onkeyup="addPlayer(this.value, event)" type="text"></div></div>`);
+        $("#players").append(`<div id="player${i}" class="player-container"><div class="title" data-text="Player ${i + 1}..." contenteditable="true" onkeyup="addPlayer(this.value, event)"></div></div>`);
         buildScore(i);
     }
 }
@@ -106,17 +106,17 @@ function buildPlayer() {
 function buildScore(index) {
     let playerIdDiv = "#player" + index;
     for(let i = 0; i < courseData.holes.length; i++) {
-        $(playerIdDiv).append(`<input onkeyup="calculateTotal(this)" class="column" type>`);
+        $(playerIdDiv).append(`<input tabindex="${i + 2}" onkeyup="calculateTotal(this)" class="col-sm border border-dark">`);
         if(i === 8){
             //fix later OUT
-            $(playerIdDiv).append(`<input class="column"></input>`)    
+            $(playerIdDiv).append(`<div class="col-sm border-top border-white bg-secondary text-white"></div>`)
         }
         if(i === 17){
             //fix later IN
-            $(playerIdDiv).append(`<input class="column"></input>`)    
+            $(playerIdDiv).append(`<div class="col-sm border-top border-right border-white bg-secondary text-white"></div>`)
         }
     }
-    $(playerIdDiv).append(`<span class="column total">Total</span>`)
+    $(playerIdDiv).append(`<span class="col-sm total border-top border-white bg-dark text-white">Total</span>`)
     
 }
 
@@ -130,8 +130,9 @@ function calculateTotal(event) {
         console.log("index:", $(this).val() );
       });
       console.log("totalid", );
-      $(totalId).text(total)
+      $(totalId).text(total);
     //   DO THIS FOR OUT AND INS
+
 }
 
 

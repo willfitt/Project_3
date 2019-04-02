@@ -14,11 +14,11 @@ function loadDoc() {
            console.log(courseList);
            for(let i = 0; i < courseList.courses.length; i++) {
                $("#modal-container").append(
-                   `<div class="card course-select" style="width: 18rem;">  
+                   `<div class="card text-center course-select" style="width: 18rem;">  
+                    <h5 class="card-title">${courseList.courses[i].name}</h5>
                     <img src="${courseList.courses[i].image}" class="card-img-top" alt="Golf Course Picture">
                     <div class="card-body">
-                    <h5 class="card-title">${courseList.courses[i].name}</h5>
-                    <a class="btn btn-primary" data-dismiss="modal" onclick="getCourseById(${courseList.courses[i].id})">Select</a>
+                    <button class="btn btn-success" data-dismiss="modal" onclick="getCourseById(${courseList.courses[i].id})">Select</button>
                     </div></div>`);
            } 
        }
@@ -50,10 +50,10 @@ function loadTeeById() {
     for(let i = 0; i < tees.length && i < 4; i++) {
         $("#modal-title").html(`${courseData.name}, Tee Select`)
         $("#modal-container").append(
-            `<div class="card w-50 course-select">  
+            `<div class="card text-center course-select">  
              <div class="card-body">
              <h5 class="card-title">${tees[i].teeType}</h5>
-             <a class="btn btn-primary" id="${tees.indexOf(tees[i])}" onclick="choosePlayerCount(${tees.indexOf(tees[i])})">Select</a>
+             <button class="btn btn-success text-center" id="${tees.indexOf(tees[i])}" onclick="choosePlayerCount(${tees.indexOf(tees[i])})">Select</button>
              </div></div>`);
     } 
 
@@ -67,10 +67,10 @@ function choosePlayerCount(id) {
     for(let i = 0; i < playerCount.length; i++) {
         $("#modal-title").html(`${courseData.name}, ${tees[id].teeType}'s Tee, Player Amount Select`)
         $("#modal-container").append(
-            `<div class="card w-50 course-select">  
+            `<div class="card text-center course-select">  
              <div class="card-body">
              <h5 class="card-title">${playerCount[i]}</h5>
-             <buton class="btn btn-primary" data-dismiss="modal" onclick="buildTable(${playerCount[i]})">Select</buton>
+             <buton class="btn btn-success" data-dismiss="modal" onclick="buildTable(${playerCount[i]})">Select</buton>
              </div></div>`);
     } 
 }
