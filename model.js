@@ -106,7 +106,7 @@ function buildPlayer() {
 function buildScore(index) {
     let playerIdDiv = "#player" + index;
     for(let i = 0; i < courseData.holes.length; i++) {
-        $(playerIdDiv).append(`<input tabindex="${i + 2}" onkeyup="calculateTotal(this)" class="col-sm border border-dark">`);
+        $(playerIdDiv).append(`<input type="number" tabindex="${i + 2}" onkeyup="calculateTotal(this)" class="col-sm border border-dark">`);
         if(i === 8){
             //fix later OUT
             $(playerIdDiv).append(`<div class="col-sm border-top border-white bg-secondary text-white"></div>`)
