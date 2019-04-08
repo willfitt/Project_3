@@ -129,24 +129,24 @@ function calculateTotal(event, box) {
     let total = 0;
     let outValue = 0;
     let inValue = 0;
-    $(inputId).each(function(index) {
+    $(inputId).each(function() {
         let value = Number($(this).val());
         total += value;
-        console.log("index:", $(this).val() );
         //april 8 work on this!!
         if(box <= 9){
-            let value = Number($(this).val());
-            outValue += value;
+            let currentOutValue = Number($(this).val());
+            outValue += currentOutValue;
+            $(outId).text(outValue);
+            let newOutValue = outValue;
+            return newOutValue
         }
-        if(box > 9){
-            let value = Number($(this).val())
-            inValue += value;
-
+        else{
+            inValue = total - newOutValue;
+            $(inId).text(inValue);
         }
       });
       $(totalId).text(total);
-      $(outId).text(outValue);
-      $(inId).text(inValue);
+      console.log(newOutValue)
 
     //   DO THIS FOR OUT AND INS
 
