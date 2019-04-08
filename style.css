@@ -3,8 +3,8 @@ body {
     width: 100%;
     font-family: 'Roboto', sans-serif;
     background-image: url(golf_background_image.png);
-    background-repeat: no-repeat; 
-    background-size: cover; 
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -20,12 +20,12 @@ h2 {
     color: white;
 }
 
-h5{
+h5 {
     background-color: white;
     text-align: center
 }
 
-.page-container{
+.page-container {
 
 }
 
@@ -34,74 +34,75 @@ h5{
     background-color: white;
 }
 
-.modal-body{
+.modal-body {
     background-color: #dadfea
 }
-.card-container{
+
+.card-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
-
 }
 
-.course-select{
-   padding: 20px;
+.course-select {
+    padding: 20px;
 }
 
-.scorecard-container{
+.scorecard-container {
     background-color: white;
     border: 1px solid black;
     position: absolute;
     top: 40%;
-
     width: auto;
     height: auto;
+}
 
-}
-#par{
-    display: flex;
-}
-#yardage{
-    display: flex;
-
-}
-#handicap{
+#par {
     display: flex;
 }
 
-#holes{
+#yardage {
+    display: flex;
+
+}
+
+#handicap {
     display: flex;
 }
 
-.title{
+#holes {
+    display: flex;
+}
+
+.title {
     font-weight: bold;
     /*background-color: cornflowerblue;*/
     width: 80px;
     padding-left: 3px;
 }
 
-input{
+input {
     /*width: 100px;*/
 }
 
-.col-sm{
+.col-sm {
     text-align: center;
     padding: unset;
 }
 
-.player-container{
+.player-container {
     display: flex;
 }
 
-[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-text)
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
 }
 
-.bgColor{
+.bgColor {
     background-color: #d1c2c2;
 }
 
-.card-body{
+.card-body {
     display: flex;
     flex-direction: column;
     justify-content: center;

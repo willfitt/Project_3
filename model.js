@@ -106,31 +106,48 @@ function buildPlayer() {
 function buildScore(index) {
     let playerIdDiv = "#player" + index;
     for(let i = 0; i < courseData.holes.length; i++) {
-        $(playerIdDiv).append(`<input type="number" tabindex="${i + 2}" onkeyup="calculateTotal(this)" class="col-sm border border-dark">`);
+        $(playerIdDiv).append(`<input id="${i + 1}" type="number" tabindex="${i + 2}" onkeyup="calculateTotal(this, id)" class="col-sm border border-dark">`);
         if(i === 8){
             //fix later OUT
-            $(playerIdDiv).append(`<div class="col-sm border-top border-white bg-secondary text-white"></div>`)
+            $(playerIdDiv).append(`<div class="col-sm out border-top border-white bg-secondary text-white"></div>`)
         }
         if(i === 17){
             //fix later IN
-            $(playerIdDiv).append(`<div class="col-sm border-top border-right border-white bg-secondary text-white"></div>`)
+            $(playerIdDiv).append(`<div class="col-sm in border-top border-right border-white bg-secondary text-white"></div>`)
         }
     }
     $(playerIdDiv).append(`<span class="col-sm total border-top border-white bg-dark text-white">Total</span>`)
     
 }
 
-function calculateTotal(event) {
-    let id = "#" + ($(event).parent().attr("id")) + " :input";
+function calculateTotal(event, box) {
+    let inputId = "#" + ($(event).parent().attr("id")) + " :input";
     let totalId = "#" + ($(event).parent().attr("id")) + " .total";
+    let outId = "#" + ($(event).parent().attr("id")) + " .out";
+    let inId = "#" + ($(event).parent().attr("id")) + " .in";
+
     let total = 0;
-    $(id).each(function(index) {
+    let outValue = 0;
+    let inValue = 0;
+    $(inputId).each(function(index) {
         let value = Number($(this).val());
         total += value;
         console.log("index:", $(this).val() );
+        //april 8 work on this!!
+        if(box <= 9){
+            let value = Number($(this).val());
+            outValue += value;
+        }
+        if(box > 9){
+            let value = Number($(this).val())
+            inValue += value;
+
+        }
       });
-      console.log("totalid", );
       $(totalId).text(total);
+      $(outId).text(outValue);
+      $(inId).text(inValue);
+
     //   DO THIS FOR OUT AND INS
 
 }
