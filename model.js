@@ -106,13 +106,11 @@ function buildPlayer() {
 function buildScore(index) {
     let playerIdDiv = "#player" + index;
     for(let i = 0; i < courseData.holes.length; i++) {
-        $(playerIdDiv).append(`<input id="${i + 1}" type="number" tabindex="${i + 2}" onkeyup="calculateTotal(this, id)" class="col-sm border border-dark">`);
+        $(playerIdDiv).append(`<input type="number" tabindex="${i + 2}" onkeyup="calculateTotal(this)" class="col-sm border border-dark">`);
         if(i === 8){
-            //fix later OUT
             $(playerIdDiv).append(`<div class="col-sm out border-top border-white bg-secondary text-white"></div>`)
         }
         if(i === 17){
-            //fix later IN
             $(playerIdDiv).append(`<div class="col-sm in border-top border-right border-white bg-secondary text-white"></div>`)
         }
     }
@@ -120,7 +118,7 @@ function buildScore(index) {
     
 }
 
-function calculateTotal(event, box) {
+function calculateTotal(event) {
     let inputId = "#" + ($(event).parent().attr("id")) + " :input";
     let totalId = "#" + ($(event).parent().attr("id")) + " .total";
     let outId = "#" + ($(event).parent().attr("id")) + " .out";
@@ -129,25 +127,20 @@ function calculateTotal(event, box) {
     let total = 0;
     let outValue = 0;
     let inValue = 0;
-    $(inputId).each(function() {
+    
+    $(inputId).each(function(index, testVal) {
         let value = Number($(this).val());
+        
         total += value;
-        //april 8 work on this!!
-        if(box <= 9){
+        if(index <= 8){
             let currentOutValue = Number($(this).val());
             outValue += currentOutValue;
             $(outId).text(outValue);
         }
-        else{
-            inValue = total - outValue;
-            $(inId).text(inValue);
-        }
       });
       $(totalId).text(total);
-      console.log(newOutValue)
-
-    //   DO THIS FOR OUT AND INS
-
+      inValue = total - outValue;
+      $(inId).text(inValue);
 }
 
 
