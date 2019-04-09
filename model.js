@@ -137,11 +137,9 @@ function calculateTotal(event, box) {
             let currentOutValue = Number($(this).val());
             outValue += currentOutValue;
             $(outId).text(outValue);
-            let newOutValue = outValue;
-            return newOutValue
         }
         else{
-            inValue = total - newOutValue;
+            inValue = total - outValue;
             $(inId).text(inValue);
         }
       });
