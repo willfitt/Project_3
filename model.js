@@ -1,6 +1,6 @@
-// function buildTitle() {
-//     $("#title-bar").html(`'s Tee`)
-// }
+function buildTitle() {
+    $("#title-bar").append(`<span>${courseData.name}</span>`)
+}
 
 function buildHoles() {
     $("#holes").append(`<div class="title">Hole</div>`);
@@ -143,9 +143,8 @@ function calculateTotal(event) {
       $(inId).text(inValue);
 }
 
-
 //NEEDS WORK
-function addPlayer() {
+function addPlayer(event) {
 
 }
 

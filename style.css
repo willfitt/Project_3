@@ -57,6 +57,12 @@ h5 {
     height: auto;
 }
 
+#title-bar{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
 #par {
     display: flex;
 }

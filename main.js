@@ -2,6 +2,7 @@ let holes = [];
 let courseData = [];
 let teeIndex;
 let playerCount;
+let teeName;
 loadDoc();
 
 function loadDoc() {
@@ -72,12 +73,12 @@ function choosePlayerCount(id) {
              <h5 class="card-title">${playerCount[i]}</h5>
              <buton class="btn btn-success" data-dismiss="modal" onclick="buildTable(${playerCount[i]})">Select</buton>
              </div></div>`);
-    } 
+    }
 }
 
 function buildTable(players) {
     playerCount = players;
-    // buildTitle();  IMPLEMENT THIS
+    buildTitle();
     buildHoles();
     buildPar();
     buildYardage();
