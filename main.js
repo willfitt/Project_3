@@ -83,7 +83,8 @@ function buildTable(players) {
     buildPar();
     buildYardage();
     buildHandicap();
-    buildPlayer(); 
+    buildPlayer();
+    buildTotal();
 }
 
 

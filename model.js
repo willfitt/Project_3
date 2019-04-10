@@ -116,8 +116,12 @@ function buildScore(index) {
             $(playerIdDiv).append(`<div class="col-sm in border-top border-right border-white bg-secondary text-white"></div>`)
         }
     }
-    $(playerIdDiv).append(`<span class="col-sm total border-top border-white bg-dark text-white">Total</span>`)
-    
+    $(playerIdDiv).append(`<span class="col-sm total border-top border-white bg-dark text-white"></span>`);
+}
+
+function buildTotal() {
+    $(".scorecard-container").append(`<button type="button" class="btn btn-sm btn-dark finalBtn">Finalize Match</button>`)
+
 }
 
 function calculateTotal(event) {
