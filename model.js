@@ -1,9 +1,11 @@
 function buildTitle() {
-    $("#title-bar").append(`<span>${courseData.name}</span>`)
+    let teeNameCap = teeName.charAt(0).toUpperCase() + teeName.slice(1);
+
+    $("#title-bar").append(`<span>${courseData.name} - ${teeNameCap}'s Tee</span>`)
 }
 
 function buildHoles() {
-    $("#holes").append(`<div class="title">Hole</div>`);
+    $("#holes").append(`<div class="title border-top border-dark">Hole</div>`);
     for(let i = 0; i < courseData.holes.length; i++) {
         $("#holes").append(`<div class="col-sm bg-info border border-dark" id="col_${courseData.holes[i].hole}">${i + 1}</div>`)
         if(i === 8){

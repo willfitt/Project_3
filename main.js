@@ -62,7 +62,7 @@ function loadTeeById() {
 
 function choosePlayerCount(id) {
     teeIndex = id;
-    console.log("Tee Index:", teeIndex);
+    teeName = tees[id].teeType;
     $("#modal-container").empty();
     playerCount = [1, 2, 3, 4];
     for(let i = 0; i < playerCount.length; i++) {
