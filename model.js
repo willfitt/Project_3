@@ -1,3 +1,5 @@
+
+
 function buildTitle() {
     let teeNameCap = teeName.charAt(0).toUpperCase() + teeName.slice(1);
     $("#title-bar").append(`<span>${courseData.name} - ${teeNameCap}'s Tee</span>`)
@@ -99,7 +101,7 @@ function buildHandicap() {
 function buildPlayer() {
     for (let i = 0; i < playerCount; i++) {
         //fix player input, change to span or div?
-        $("#players").append(`<div id="player${i}" class="player-container"><div class="title" data-text="Player ${i + 1}..." contenteditable="true" onkeyup="addPlayer(this.value, event)"></div></div>`);
+        $("#players").append(`<div id="player${i}" class="player-container"><div class="title playerTitle" data-text="Player ${i + 1}..." contenteditable="true" onblur="addPlayer(this, event)"></div></div>`);
         buildScore(i);
     }
 }
@@ -115,10 +117,10 @@ function buildScore(index) {
             $(playerIdDiv).append(`<div class="col-sm in border-top border-right border-white bg-secondary text-white"></div>`)
         }
     }
-    $(playerIdDiv).append(`<span class="col-sm total border-top border-white bg-dark text-white"></span>`);
+    $(playerIdDiv).append(`<div class="col-sm total border-top border-white bg-dark text-white"></div>`);
 }
 
-function buildTotal() {
+function buildTotalButton() {
     $(".scorecard-container").append(`<button type="button" class="btn btn-sm btn-dark finalBtn">Finalize Match</button>`)
 
 }
@@ -149,8 +151,27 @@ function calculateTotal(event) {
 }
 
 //NEEDS WORK
-// function addPlayer(event) {
-
+function addPlayer(name) {
+    if(playerSet.has($(name).text())){
+        $(".playerTitle").text("")
+    }
+    else{
+        playerSet.add($(name).text());
+        console.log(playerSet)
+    }
+}
+//needs to be fixed and added to above function
+// function addPlayer(name, event) {
+//     $(".playerTitle").typeWatch({
+//         callback:function(name) {
+//             if (playerSet.has(name)) {
+//
+//             }
+//             else {
+//                 playerSet.add($(name).text());
+//                 console.log(playerSet)
+//             }
+//         }})
 // }
 
 // class PlayerGenerator {
@@ -172,4 +193,4 @@ function calculateTotal(event) {
 //     }
 // }
 
-//on focus for adding player, use set for name management 
+//on focus for adding player, use set for name management

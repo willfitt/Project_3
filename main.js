@@ -3,6 +3,7 @@ let courseData = [];
 let teeIndex;
 let playerCount;
 let teeName;
+let playerSet = new Set([]);
 loadDoc();
 
 function loadDoc() {
@@ -19,7 +20,7 @@ function loadDoc() {
                     <h5 class="card-title">${courseList.courses[i].name}</h5>
                     <img src="${courseList.courses[i].image}" class="card-img-top" alt="Golf Course Picture">
                     <div class="card-body">
-                    <button class="btn btn-success" data-dismiss="modal" onclick="getCourseById(${courseList.courses[i].id})">Select</button>
+                    <button class="btn btn-dark" data-dismiss="modal" onclick="getCourseById(${courseList.courses[i].id})">Select</button>
                     </div></div>`);
             }
         }
@@ -54,7 +55,7 @@ function loadTeeById() {
             `<div class="card text-center course-select">  
              <div class="card-body">
              <h5 class="card-title">${tees[i].teeType}</h5>
-             <button class="btn btn-success text-center" id="${tees.indexOf(tees[i])}" onclick="choosePlayerCount(${tees.indexOf(tees[i])})">Select</button>
+             <button class="btn btn-dark text-center" id="${tees.indexOf(tees[i])}" onclick="choosePlayerCount(${tees.indexOf(tees[i])})">Select</button>
              </div></div>`);
     }
 
@@ -71,7 +72,7 @@ function choosePlayerCount(id) {
             `<div class="card text-center course-select">  
              <div class="card-body">
              <h5 class="card-title">${playerCount[i]}</h5>
-             <buton class="btn btn-success" data-dismiss="modal" onclick="buildTable(${playerCount[i]})">Select</buton>
+             <buton class="btn btn-dark" data-dismiss="modal" onclick="buildTable(${playerCount[i]})">Select</buton>
              </div></div>`);
     }
 }
@@ -84,5 +85,5 @@ function buildTable(players) {
     buildYardage();
     buildHandicap();
     buildPlayer();
-    buildTotal();
+    buildTotalButton();
 }
