@@ -49,6 +49,7 @@ function getCourseById(id) {
 
 function loadTeeById() {
     tees = courseData.holes[0].teeBoxes;
+    $("#modal-container").empty();
     for (let i = 0; i < tees.length && i < 4; i++) {
         $("#modal-title").html(`${courseData.name}, Tee Select`)
         $("#modal-container").append(
@@ -72,13 +73,30 @@ function choosePlayerCount(id) {
             `<div class="card text-center course-select">  
              <div class="card-body">
              <h5 class="card-title">${playerCount[i]}</h5>
-             <buton class="btn btn-dark" data-dismiss="modal" onclick="buildTable(${playerCount[i]})">Select</buton>
+             <button class="btn btn-dark" onclick="choosePlayerNames(${playerCount[i]})">Select</button>
              </div></div>`);
     }
 }
 
-function buildTable(players) {
+function choosePlayerNames(players) {
     playerCount = players;
+    $("#modal-container").empty();
+    for (let i = 0; i < playerCount; i++) {
+        $("#modal-container").append(
+            `<form><div class="form-group">            
+            <label for="exampleInputPassword1">Player ${i+1}</label>
+            <input type="text" class="form-control" id="playerName${i+1}" placeholder="Name..."></div>
+            </form>`
+        );
+    }
+    $("#modal-container").append(
+        `<div class="modal-footer">
+        <button type="submit" class="btn btn-dark text-center playerBtn" data-dismiss="modal" onclick="buildTable()">Play Golf!</button></div>`
+        );
+}
+
+function buildTable() {
+    console.log(playerCount);
     buildTitle();
     buildHoles();
     buildPar();

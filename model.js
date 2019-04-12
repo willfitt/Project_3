@@ -1,5 +1,3 @@
-
-
 function buildTitle() {
     let teeNameCap = teeName.charAt(0).toUpperCase() + teeName.slice(1);
     $("#title-bar").append(`<span>${courseData.name} - ${teeNameCap}'s Tee</span>`)
@@ -109,7 +107,7 @@ function buildPlayer() {
 function buildScore(index) {
     let playerIdDiv = "#player" + index;
     for (let i = 0; i < courseData.holes.length; i++) {
-        $(playerIdDiv).append(`<input type="number" tabindex="${i + 2}" onkeyup="calculateTotal(this)" class="col-sm border border-dark">`);
+        $(playerIdDiv).append(`<input type="number" tabindex="${i + 2}" onkeyup="appendScores(this)" class="col-sm border border-dark">`);
         if (i === 8) {
             $(playerIdDiv).append(`<div class="col-sm out border-top border-white bg-secondary text-white"></div>`)
         }
@@ -121,11 +119,11 @@ function buildScore(index) {
 }
 
 function buildTotalButton() {
-    $(".scorecard-container").append(`<button type="button" class="btn btn-sm btn-dark finalBtn">Finalize Match</button>`)
+    $(".scorecard-container").append(`<button type="button" class="btn btn-sm btn-dark finalBtn" onclick="calculateTotal()">Finalize Match</button>`)
 
 }
 
-function calculateTotal(event) {
+function appendScores(event) {
     let inputId = "#" + ($(event).parent().attr("id")) + " :input";
     let totalId = "#" + ($(event).parent().attr("id")) + " .total";
     let outId = "#" + ($(event).parent().attr("id")) + " .out";
@@ -148,6 +146,10 @@ function calculateTotal(event) {
     $(totalId).text(total);
     inValue = total - outValue;
     $(inId).text(inValue);
+}
+
+function calculateTotal() {
+
 }
 
 //NEEDS WORK
