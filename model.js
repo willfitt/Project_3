@@ -167,7 +167,7 @@ function calculateTotal() {
         
         if (totalPlayerScore >= 0 && totalPlayerScore < 5) {
             $("#modal-container").append(
-                `<div class="card text-center course-select">  
+                `<div class="card text-center course-select finalScoreCard">  
              <div class="card-body">
              <h5 class="card-title">${nameArray[i]}</h5>
              
@@ -176,7 +176,7 @@ function calculateTotal() {
         }
         if (totalPlayerScore >= 5) {
             $("#modal-container").append(
-                `<div class="card text-center course-select">  
+                `<div class="card text-center course-select finalScoreCard">  
              <div class="card-body">
              <h5 class="card-title">${nameArray[i]}</h5>
              
@@ -185,7 +185,7 @@ function calculateTotal() {
         }
         if (totalPlayerScore < 0) {
             $("#modal-container").append(
-                `<div class="card text-center course-select">  
+                `<div class="card text-center course-select finalScoreCard">  
              <div class="card-body">
              <h5 class="card-title">${nameArray[i]}</h5>
              
@@ -215,7 +215,7 @@ function addNames() {
         if (nameCheck) {
             validated = false;
             $(this).css('border', '2px solid red');
-            alert("Players cannot have the same name (${value})");
+            alert(`Players cannot have the same name - ${value}`);
             return false;
         }
         else {

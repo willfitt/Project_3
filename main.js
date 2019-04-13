@@ -84,8 +84,8 @@ function choosePlayerNames(players) {
     $("#modal-container").empty();
     for (let i = 0; i < playerCount; i++) {
         $("#modal-container").append(
-            `<form><div class="form-group">            
-            <label for="exampleInputPassword1">Player ${i+1}</label>
+            `<form onkeypress="return event.keyCode != 13;"><div class="form-group">            
+            <label for="playerName">Player ${i+1}</label>
             <input type="text" class="playerNameInput form-control " id="playerName${i+1}" placeholder="Name..."></div>
             </form>`
         );
