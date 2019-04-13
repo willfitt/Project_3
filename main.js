@@ -4,6 +4,7 @@ let teeIndex;
 let playerCount;
 let teeName;
 let nameArray = [];
+let scoreArray = [];
 loadDoc();
 
 function loadDoc() {
@@ -91,7 +92,7 @@ function choosePlayerNames(players) {
     }
     $("#modal-container").append(
         `<div class="modal-footer">
-        <button type="submit" class="btn btn-dark text-center playerBtn" onclick="grabNames()">Play Golf!</button></div>`
+        <button  type="submit" class="btn btn-dark text-center playerBtn" onclick="grabNames()">Play Golf!</button></div>`
         );
 }
 

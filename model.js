@@ -40,7 +40,7 @@ function buildPar() {
             $("#par").append(`<div class="col-sm border-top border-right border-white bg-secondary text-white">${parInTotal}</div>`)
         }
     }
-    $("#par").append(`<div class="col-sm border-top border-white bg-dark text-white">${parTotal}</div>`)
+    $("#par").append(`<div class="col-sm border-top border-white bg-dark text-white parTotal">${parTotal}</div>`)
 }
 
 function buildYardage() {
@@ -147,16 +147,53 @@ function appendScores(event) {
 }
 
 function calculateTotal() {
+    scoreArray = [];
+    let totalPlayerScore = 0;
+    let parTotal = $(".parTotal").text();
+    $(".total").each(function (index) {
+        let value = $(this).text();
+        console.log("value:", value)
+        scoreArray.push(value);
+    })
+    console.log(scoreArray);
+
     $("#modal-box").modal('show');
     $("#modal-title").html(`Final Scores`);
     $("#modal-container").empty();
-    $("#modal-container").append(
-        `<div class="card text-center course-select">  
-         <div class="card-body">
-         <h5 class="card-title">Player Name</h5>
-         
-         <p class="card-text">Here's your final score</p>
-         </div></div>`);
+
+    for (let i = 0; i < nameArray.length; i++) {
+        totalPlayerScore = scoreArray[i] - parTotal;
+        
+        
+        if (totalPlayerScore >= 0 && totalPlayerScore < 5) {
+            $("#modal-container").append(
+                `<div class="card text-center course-select">  
+             <div class="card-body">
+             <h5 class="card-title">${nameArray[i]}</h5>
+             
+             <p class="card-text">Your score is ${totalPlayerScore} over par, better luck next time!</p>
+             </div></div>`);
+        }
+        if (totalPlayerScore >= 5) {
+            $("#modal-container").append(
+                `<div class="card text-center course-select">  
+             <div class="card-body">
+             <h5 class="card-title">${nameArray[i]}</h5>
+             
+             <p class="card-text">Your score is ${totalPlayerScore} over par, you may need some more practice!</p>
+             </div></div>`);
+        }
+        if (totalPlayerScore < 0) {
+            $("#modal-container").append(
+                `<div class="card text-center course-select">  
+             <div class="card-body">
+             <h5 class="card-title">${nameArray[i]}</h5>
+             
+             <p class="card-text">Your score is ${totalPlayerScore} under par, great job!</p>
+             </div></div>`);
+        }
+    }
+
 
 }
 
