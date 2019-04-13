@@ -97,15 +97,14 @@ function buildHandicap() {
 
 
 function buildPlayer() {
-    for (let i = 0; i < playerCount; i++) {
-        //fix player input, change to span or div?
-        $("#players").append(`<div id="player${i}" class="player-container"><div class="title playerTitle" data-text="Player ${i + 1}..." contenteditable="true" onblur="addPlayer(this, event)"></div></div>`);
+    for (let i = 0; i < nameArray.length; i++) {
+        $("#players").append(`<div id="nameArray${i}" class="player-container"><div class="title playerTitle">${nameArray[i]}</div></div>`);
         buildScore(i);
     }
 }
 
 function buildScore(index) {
-    let playerIdDiv = "#player" + index;
+    let playerIdDiv = "#nameArray" + index;
     for (let i = 0; i < courseData.holes.length; i++) {
         $(playerIdDiv).append(`<input type="number" tabindex="${i + 2}" onkeyup="appendScores(this)" class="col-sm border border-dark">`);
         if (i === 8) {
@@ -119,7 +118,7 @@ function buildScore(index) {
 }
 
 function buildTotalButton() {
-    $(".scorecard-container").append(`<button type="button" class="btn btn-sm btn-dark finalBtn" onclick="calculateTotal()">Finalize Match</button>`)
+    $(".scorecard-container").append(`<button type="button" class="btn btn-sm btn-dark finalBtn" data-toggle="modal" onclick="calculateTotal()">Finalize Match</button>`)
 
 }
 
@@ -128,7 +127,6 @@ function appendScores(event) {
     let totalId = "#" + ($(event).parent().attr("id")) + " .total";
     let outId = "#" + ($(event).parent().attr("id")) + " .out";
     let inId = "#" + ($(event).parent().attr("id")) + " .in";
-
     let total = 0;
     let outValue = 0;
     let inValue = 0;
@@ -149,25 +147,103 @@ function appendScores(event) {
 }
 
 function calculateTotal() {
+    $("#modal-box").modal('show');
+    $("#modal-title").html(`Final Scores`);
+    $("#modal-container").empty();
+    $("#modal-container").append(
+        `<div class="card text-center course-select">  
+         <div class="card-body">
+         <h5 class="card-title">Player Name</h5>
+         
+         <p class="card-text">Here's your final score</p>
+         </div></div>`);
 
 }
 
-//NEEDS WORK
-function addPlayer(name) {
-    if(playerSet.has($(name).text())){
-        $(".playerTitle").text("")
-    }
-    else{
-        playerSet.add($(name).text());
-        console.log(playerSet)
-    }
+function addNames() {
+
+    nameArray = [];
+    let validated = true;
+
+    $(".playerNameInput").each(function (index) {
+        $(this).css('border', 'none');
+        let value = $(this).val();
+        let nameCheck = nameArray.includes(value);
+        if (value.length === 0) {
+            validated = false;
+            $(this).css('border', '2px solid red');
+            alert("Please add all player names.");
+            return false;
+        }
+        if (nameCheck) {
+            validated = false;
+            $(this).css('border', '2px solid red');
+            alert("Players cannot have the same name (${value})");
+            return false;
+        }
+        else {
+            nameArray.push(value);
+        }
+    })
+    console.log(nameArray);
+    return validated;
+
 }
-//needs to be fixed and added to above function
+
+
+
+
+// ////josh
+
+
+
+// $(inputId).each(function (index, testVal) {
+//     let value = $(this).val();
+//     let nameCheck = nameArray.has(value) // true/false
+// array.includes
+//     if(nameCheck)
+//     {
+//        validated = false;
+
+//     }
+//     else
+//     {
+//         nameArray.set(value)
+//     }
+//     if(validated)
+//     {
+//         move onabort
+//     }
+
+//     else
+//     {
+//         alert("Player names...")
+//     }
+
+
+// }
+
+
+
+////
+
+// NEEDS WORK
+// function addPlayer(name) {
+//     if (playerSet.has($(name).text())) {
+//         $(".playerTitle").text("")
+//     }
+//     else {
+//         playerSet.add($(name).text());
+//         console.log(playerSet)
+//     }
+// }
+
+// // needs to be fixed and added to above function
 // function addPlayer(name, event) {
 //     $(".playerTitle").typeWatch({
 //         callback:function(name) {
-//             if (playerSet.has(name)) {
-//
+//             if(playerSet.has(nameInput)) {
+
 //             }
 //             else {
 //                 playerSet.add($(name).text());

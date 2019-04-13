@@ -3,7 +3,7 @@ let courseData = [];
 let teeIndex;
 let playerCount;
 let teeName;
-let playerSet = new Set([]);
+let nameArray = [];
 loadDoc();
 
 function loadDoc() {
@@ -85,18 +85,29 @@ function choosePlayerNames(players) {
         $("#modal-container").append(
             `<form><div class="form-group">            
             <label for="exampleInputPassword1">Player ${i+1}</label>
-            <input type="text" class="form-control" id="playerName${i+1}" placeholder="Name..."></div>
+            <input type="text" class="playerNameInput form-control " id="playerName${i+1}" placeholder="Name..."></div>
             </form>`
         );
     }
     $("#modal-container").append(
         `<div class="modal-footer">
-        <button type="submit" class="btn btn-dark text-center playerBtn" data-dismiss="modal" onclick="buildTable()">Play Golf!</button></div>`
+        <button type="submit" class="btn btn-dark text-center playerBtn" onclick="grabNames()">Play Golf!</button></div>`
         );
 }
 
+function grabNames() {
+    if( addNames() ) {
+        $(".modal-content").append(`<div class="modal-footer"><button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button></div>`); 
+        $("#modal-container").empty();
+
+        $('#modal-box').modal('hide')
+        buildTable();
+    }
+}
+
 function buildTable() {
-    console.log(playerCount);
+    console.log(nameArray);
     buildTitle();
     buildHoles();
     buildPar();
